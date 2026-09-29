@@ -45,13 +45,19 @@ model = AutoModelForCausalLM.from_pretrained(
 model.eval()
 
 print(f"Loading {ASR_ID} ...", flush=True)
-asr = pipeline(
-    "automatic-speech-recognition",
-    model=ASR_ID,
-    chunk_length_s=30,
-    device=0 if torch.cuda.is_available() else -1,
-    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-)
+asr = None
+asr_error = None
+try:
+    asr = pipeline(
+        "automatic-speech-recognition",
+        model=ASR_ID,
+        chunk_length_s=30,
+        device=0 if torch.cuda.is_available() else -1,
+        torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+    )
+except Exception as e:  # e.g. gated repo without access: keep the LLM usable
+    asr_error = str(e).splitlines()[0][:300]
+    print(f"WARNING: ASR unavailable, voice disabled: {asr_error}", flush=True)
 print("Ready.", flush=True)
 
 gpu_lock = threading.Lock()  # one generation at a time on a single T4
@@ -105,7 +111,7 @@ def build_inputs(req: ChatRequest):
 
 @app.get("/health")
 def health():
-    return {"ok": True, "llm": LLM_ID, "asr": ASR_ID, "gpu": torch.cuda.is_available()}
+    return {"ok": True, "llm": LLM_ID, "asr": ASR_ID if asr else None, "asr_error": asr_error, "gpu": torch.cuda.is_available()}
 
 
 @app.get("/v1/models", dependencies=[Depends(check_auth)])
@@ -150,6 +156,8 @@ def chat(req: ChatRequest):
 
 @app.post("/v1/audio/transcriptions", dependencies=[Depends(check_auth)])
 async def transcribe(file: UploadFile = File(...), model: str = Form(None), language: str = Form(None)):
+    if asr is None:
+        raise HTTPException(status_code=503, detail=f"ASR model unavailable: {asr_error}")
     suffix = os.path.splitext(file.filename or "audio.webm")[1] or ".webm"
     with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
         tmp.write(await file.read())
