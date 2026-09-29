@@ -1,0 +1,12 @@
+{
+  "name": "@telnora/natlas",
+  "version": "0.1.0",
+  "description": "Typed client for N-ATLAS (Nigeria's open multilingual LLM): chat, streaming and speech-to-text.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": { "build": "tsc -p tsconfig.json", "test": "node --test test/sdk.test.ts" },
+  "devDependencies": { "typescript": "^5.6.0" }
+}

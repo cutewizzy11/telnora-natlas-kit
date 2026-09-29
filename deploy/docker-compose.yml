@@ -1,0 +1,19 @@
+# Serves N-ATLAS locally: LLM on :8000 (needs an NVIDIA GPU) and ASR on :8001 (CPU is fine).
+# Usage: docker compose up --build
+services:
+  llm:
+    image: vllm/vllm-openai:latest
+    command: ["--model", "NCAIR1/N-ATLaS", "--dtype", "bfloat16", "--max-model-len", "4096"]
+    ports: ["8000:8000"]
+    volumes: ["hf-cache:/root/.cache/huggingface"]
+    ipc: host
+    deploy:
+      resources:
+        reservations:
+          devices: [{ driver: nvidia, count: 1, capabilities: [gpu] }]
+  asr:
+    build: { context: ., dockerfile: Dockerfile.asr }
+    ports: ["8001:8001"]
+    volumes: ["hf-cache:/root/.cache/huggingface"]
+volumes:
+  hf-cache:

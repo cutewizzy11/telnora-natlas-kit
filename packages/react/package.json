@@ -1,0 +1,7 @@
+{
+  "name": "@telnora/natlas-react",
+  "version": "0.1.0",
+  "description": "Drop-in React chat and voice-note components for N-ATLAS.",
+  "license": "MIT",
+  "peerDependencies": { "react": ">=18", "@telnora/natlas": "^0.1.0" }
+}
