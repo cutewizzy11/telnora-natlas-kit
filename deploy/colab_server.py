@@ -11,6 +11,7 @@ import tempfile
 import threading
 import time
 import uuid
+from datetime import datetime
 from typing import List, Optional
 
 import torch
@@ -74,15 +75,19 @@ class ChatRequest(BaseModel):
     model: Optional[str] = None
     messages: List[Message]
     stream: bool = False
-    temperature: Optional[float] = 0.7
+    temperature: Optional[float] = 0.1  # model card default
     max_tokens: Optional[int] = 512
-    repetition_penalty: Optional[float] = 1.1
+    repetition_penalty: Optional[float] = 1.12  # model card default
 
 
 def build_inputs(req: ChatRequest):
-    ids = tokenizer.apply_chat_template(
-        [m.dict() for m in req.messages], add_generation_prompt=True, return_tensors="pt"
-    ).to(model.device)
+    text = tokenizer.apply_chat_template(
+        [m.dict() for m in req.messages],
+        add_generation_prompt=True,
+        tokenize=False,
+        date_string=datetime.now().strftime("%d %b %Y"),  # as in the model card
+    )
+    ids = tokenizer(text, return_tensors="pt", add_special_tokens=False).input_ids.to(model.device)
     kwargs = dict(
         input_ids=ids,
         attention_mask=torch.ones_like(ids),
@@ -90,7 +95,7 @@ def build_inputs(req: ChatRequest):
         repetition_penalty=req.repetition_penalty or 1.0,
         pad_token_id=tokenizer.eos_token_id,
     )
-    t = req.temperature if req.temperature is not None else 0.7
+    t = req.temperature if req.temperature is not None else 0.1
     if t > 0:
         kwargs.update(do_sample=True, temperature=t)
     else:

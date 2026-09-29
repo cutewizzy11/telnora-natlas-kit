@@ -99,7 +99,14 @@ print(client.chat([{"role": "user", "content": "Hello"}]))
 - Telnora will maintain the kit because it is the base for the agency's own AI products for African clients.
 
 ## 9. Licence and attribution
-The toolkit is MIT licensed. N-ATLaS is released under the Open-Source Research and Innovation License, which
-caps deployments at under 1,000 active end-users without a separate licence and requires attribution to Awarri
-Technologies and the Federal Ministry of Communications, Innovation and Digital Economy. The kit's docs and
-footer carry this attribution, and the deployment README repeats the cap so downstream developers are aware.
+The toolkit is MIT licensed. N-ATLaS is released under the Open-Source Research and Innovation License. Points
+that matter to developers using this kit: use is limited to organisations or projects with no more than 1,000
+active end-users in a rolling 30 days; larger or commercial deployments need a separate licence from Awarri
+Technologies; derivative models must keep the same licence and, if renamed, carry the suffix "Powered by Awarri";
+prohibited uses include surveillance, discriminatory profiling, disinformation and weaponised deployment. The
+kit does not rename or redistribute the models. Required attribution, shown in the site footer and docs:
+"N-ATLaS is an initiative of the Federal Ministry of Communications, Innovation and Digital Economy, and powered by Awarri Technologies."
+
+Model access: `NCAIR1/N-ATLaS` is a gated Hugging Face repository. Developers must request access and authenticate
+with a read token. The model card's published human evaluation (English 4.21/5, Hausa 3.98, Igbo 3.87, Yoruba
+2.69) is why the demos in this submission use English.

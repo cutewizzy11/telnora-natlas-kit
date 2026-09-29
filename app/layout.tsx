@@ -22,8 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </header>
         <main>{children}</main>
         <footer className="footer">
-          Built by Telnora Technologies for the National AI Innovation Challenge. N-ATLaS is developed by
-          Awarri Technologies and the Federal Ministry of Communications, Innovation and Digital Economy.
+          Built by Telnora Technologies for the National AI Innovation Challenge. N-ATLaS is an initiative of the Federal Ministry of Communications, Innovation and Digital Economy, and powered by Awarri Technologies.
         </footer>
       </body>
     </html>
