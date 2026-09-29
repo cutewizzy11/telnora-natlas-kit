@@ -9,6 +9,12 @@ The kit talks to any OpenAI-compatible endpoint. N-ATLaS ships as open weights, 
 
 Other ASR checkpoints from the same org (`NCAIR1/Yoruba-ASR`, `Hausa-ASR`, `Igbo-ASR`) work with the same gateway via `ASR_MODEL`.
 
+## Option 0: Free Google Colab (T4, 4-bit)
+Open [`N-ATLAS_Colab.ipynb`](https://colab.research.google.com/github/cutewizzy11/telnora-natlas-kit/blob/main/deploy/N-ATLAS_Colab.ipynb),
+choose a T4 GPU runtime and run all cells. It serves the LLM (4-bit) and the ASR model from one server
+(`colab_server.py`) behind a Cloudflare tunnel and prints a Base URL and API key for the playground.
+Sessions end after a few hours; rerun for a new URL. 4-bit quantisation slightly changes output quality.
+
 ## Option 1: Docker Compose (GPU machine)
 ```
 docker compose up --build
