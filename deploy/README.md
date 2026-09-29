@@ -9,6 +9,8 @@ The kit talks to any OpenAI-compatible endpoint. N-ATLaS ships as open weights, 
 
 Other ASR checkpoints from the same org (`NCAIR1/Yoruba-ASR`, `Hausa-ASR`, `Igbo-ASR`) work with the same gateway via `ASR_MODEL`.
 
+**Gated models:** `NCAIR1/N-ATLaS` (and possibly the ASR checkpoints) require you to request access on Hugging Face and authenticate with a Read token (`HF_TOKEN`).
+
 ## Option 0: Free Google Colab (T4, 4-bit)
 Open [`N-ATLAS_Colab.ipynb`](https://colab.research.google.com/github/cutewizzy11/telnora-natlas-kit/blob/main/deploy/N-ATLAS_Colab.ipynb),
 choose a T4 GPU runtime and run all cells. It serves the LLM (4-bit) and the ASR model from one server
