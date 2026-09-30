@@ -34,6 +34,7 @@ vllm serve NCAIR1/N-ATLaS --dtype bfloat16 --port 8000
 export default function Docs() {
   return (
     <div className="wrap">
+      <p className="eyebrow">Docs</p>
       <h1>Quickstart</h1>
       <p className="lead">From zero to a working N-ATLAS call in four steps.</p>
 

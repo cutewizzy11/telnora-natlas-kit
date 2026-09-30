@@ -43,7 +43,9 @@ console.log(text);`;
 
   return (
     <div className="wrap">
+      <p className="eyebrow">Try it</p>
       <h1>Playground</h1>
+      <p className="lead">Point it at your N-ATLAS endpoint, chat, speak, and copy the code that made it work.</p>
       <div className="row">
         <label><input type="radio" checked={mode === "demo"} onChange={() => setMode("demo")} /> Demo mode (mock responses)</label>
         <label><input type="radio" checked={mode === "custom"} onChange={() => setMode("custom")} /> My N-ATLAS endpoint</label>

@@ -60,6 +60,7 @@ export default function Tutor() {
 
   return (
     <div className="wrap">
+      <p className="eyebrow">Sample app · EdTech</p>
       <h1>Ask the tutor</h1>
       <p className="lead">A sample EdTech app built with the Telnora N-ATLAS Kit: about 100 lines using the SDK and voice component.</p>
 
