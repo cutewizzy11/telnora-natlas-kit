@@ -40,8 +40,9 @@ const asr = new Natlas({ baseUrl: "http://HOST:8001/v1" });
 For browser use, put HTTPS in front (Caddy, Cloudflare Tunnel, or your cloud load balancer) and allow CORS.
 
 ## Status
-These recipes follow the model cards and vLLM's documented usage. They have not yet been run end to end by
-the Telnora team; report problems via GitHub issues.
+Option 0 (Colab, 4-bit) has been run end to end by the Telnora team on a free T4 (chat and streaming verified through
+the tunnel and the hosted playground). Options 1 and 2 follow the model cards and vLLM's documented usage and have
+not yet been run by the team; report problems via GitHub issues.
 
 Licence reminder: N-ATLaS models use the Open-Source Research and Innovation License (1,000 active end-user
 cap without a separate licence). Credit Awarri Technologies and the Federal Ministry of Communications,

@@ -84,8 +84,13 @@ print(client.chat([{"role": "user", "content": "Hello"}]))
 ## 7. Honest status and limitations
 - The public demo runs in **demo mode** by default, which returns simulated text from a mock server. It is not
   model output. Real N-ATLAS output requires the user to point the playground at a hosted endpoint.
-- The deployment recipes follow the model cards and vLLM documentation; validation on real hardware is reported in
-  the beta-test evidence and repository issues.
+- **Validated on real hardware:** the Colab path (`deploy/N-ATLAS_Colab.ipynb`) was run on a free Google Colab T4
+  with `NCAIR1/N-ATLaS` in 4-bit and `NCAIR1/NigerianAccentedEnglish`. Health, auth (401 without key), CORS,
+  non-streaming and streaming chat through the Cloudflare tunnel and the hosted playground were exercised and
+  worked. The Docker Compose and vLLM recipes follow the model cards and vLLM documentation but have not been run
+  by the team yet. Speech-to-text through the playground's voice button is validated separately (see beta results).
+- The model can state invented specifics with confidence (for example market prices). Applications built with the
+  kit should not present model output as verified fact; the docs and demos say so.
 - The 30-second ASR limit and reduced accuracy on noisy audio and code-switching are properties of the
   underlying model.
 - The SDK is currently distributed as source (one file) and via pip from git; publishing to npm and PyPI is planned.
