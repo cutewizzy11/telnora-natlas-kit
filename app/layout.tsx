@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Link href="/" className="brand">Telnora N-ATLAS Kit</Link>
           <nav>
             <Link href="/playground">Playground</Link>
+            <Link href="/tutor">Tutor demo</Link>
             <Link href="/docs">Docs</Link>
             <a href="https://huggingface.co/NCAIR1/N-ATLaS" target="_blank" rel="noreferrer">N-ATLaS model</a>
           </nav>

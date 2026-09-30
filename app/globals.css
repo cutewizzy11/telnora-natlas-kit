@@ -33,3 +33,7 @@ input:not([type=radio]),textarea{font:inherit;padding:8px 10px;border:1px solid 
 pre.code{background:#0f1a14;color:#d6f5e2;padding:14px;border-radius:10px;overflow:auto;font-size:.85rem}
 code{background:var(--card);padding:1px 5px;border-radius:4px}
 .footer{padding:20px;text-align:center;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line)}
+
+select.btn{padding:9px 12px}
+details.card summary{cursor:pointer;font-weight:600}
+details.card .row{margin:10px 0}
